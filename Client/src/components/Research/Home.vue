@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <v-app id="inspire">
+      <hr>
       <v-card color="" >
         <v-card-title
           class="layout justify-center">

@@ -14,6 +14,8 @@ import Home from '../components/Research/Home'
 import AddResearch from '../components/Research/AddResearch'
 import PostJob from '../components/Research/PostJob'
 import Search from '../components/Research/Search'
+import CreateGroup from '../components/Group/CreateGroup'
+
 
 Vue.use(Router)
 
@@ -91,5 +93,11 @@ export default new Router({
       name: 'Search',
       component: Search
     },
+    {
+      path: '/CreateGroup',
+      name: 'CreateGroup',
+      component: CreateGroup
+    }
+
   ]
 })
