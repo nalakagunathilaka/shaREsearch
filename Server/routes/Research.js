@@ -13,6 +13,7 @@ router.post('/addResearch', (req, res) => {
     resRef.child(resKey).set({
         Name: req.body.name,
         Field: req.body.field,
+        Category: "Single",
         Username: req.body.username,
         Researcher: req.body.Researcher,
         Description: req.body.description,
@@ -40,7 +41,7 @@ router.get('/getResearches', (req, res) => {
         var username = snapshot.child('Username').val();
         console.log(username);
         resRef.orderByChild("Username").equalTo(username).once("value", (snapshot) =>{
-            // console.log(snapshot.val());
+            console.log(snapshot.val());
             res.json(snapshot.val());
         }, (error) => {
             console.log(error.message);
@@ -77,7 +78,57 @@ router.get('/getJobs', (req, res) => {
     })
 });
 
+router.post('/addGroupResearch', (req, res, next) => {
+    var resKey = firebase.database.ref().child('researches').push().key;
+    var resRef = firebase.database.ref('researches');
+    var messageRef = firebase.database.ref('messages');
 
+    resRef.child(resKey).set({
+        Name: req.body.name,
+        Field: req.body.field,
+        Category: "Group",
+        Groupname: req.body.groupname,
+        Description: req.body.description,
+        Details: req.body.details,
+        StartDate: req.body.startDate,
+        Members: req.body.members
+
+    }).then((result) => {
+        messageRef.child(resKey).push({
+            username: 'System',
+            text: 'Group Created',
+            date: new Date().toISOString()
+        })
+            .then((result) => {
+                res.send({success: true, message: 'Research added successfully'});
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+    }).catch((err) => {
+        console.log(err);
+        res.send({success: true, message: err.message});
+    })
+});
+
+router.get('/getGroupResearches', (req, res) => {
+    var resRef = firebase.database.ref('researches');
+
+    resRef.once("value", (snapshot) => {
+        res.send(snapshot.val());
+    })
+}, (error) => {
+    console.log(error.message);
+});
+
+router.post('/getCurrentResearch', (req, res, next) => {
+    var resRef = firebase.database.ref('researches');
+    resRef.orderByChild('Name').equalTo(req.body.name).once("value", (snapshot) => {
+        var key = Object.keys(snapshot.val())[0];
+        res.json({successs: true, research: snapshot.val(), key: key});
+    })
+});
 
 
 

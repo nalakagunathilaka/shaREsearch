@@ -76,6 +76,6 @@
     padding: 20px;
     margin: 20px 0;
     box-sizing: border-box;
-    background: #eee;
+    background: #D1C4E9;
   }
 </style>

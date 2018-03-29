@@ -15,6 +15,8 @@ import AddResearch from '../components/Research/AddResearch'
 import PostJob from '../components/Research/PostJob'
 import Search from '../components/Research/Search'
 import CreateGroup from '../components/Group/CreateGroup'
+import GroupResearch from '../components/Group/GroupResearch'
+import WorkSpace from '../components/Group/WorkSpace'
 
 
 Vue.use(Router)
@@ -97,7 +99,17 @@ export default new Router({
       path: '/CreateGroup',
       name: 'CreateGroup',
       component: CreateGroup
-    }
+    },
+    {
+      path: '/GroupResearch',
+      name: 'GroupResearch',
+      component: GroupResearch
+    },
+    {
+      path: '/WorkSpace/:id',
+      name: 'WorkSpace',
+      component: WorkSpace
+    },
 
   ]
 })

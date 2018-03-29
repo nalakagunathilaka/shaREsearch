@@ -102,80 +102,6 @@
         </div>
       </div>
 
-      <!--<div-->
-        <!--id="e3"-->
-        <!--style="max-width: 250px; margin-left: 1275px; margin-top: 1px;"-->
-        <!--class="grey lighten-3"-->
-      <!--&gt;-->
-        <!--<v-toolbar color="grey darken-3" class="white&#45;&#45;text">-->
-          <!--<v-toolbar-side-icon class="white&#45;&#45;text"></v-toolbar-side-icon>-->
-          <!--<v-toolbar-title>Job Posts</v-toolbar-title>-->
-          <!--<v-spacer></v-spacer>-->
-        <!--</v-toolbar>-->
-        <!--<v-card>-->
-          <!--<v-container-->
-            <!--style="max-height: 550px"-->
-            <!--class="scroll-y"-->
-            <!--id="scroll-target"-->
-          <!--&gt;-->
-            <!--<v-layout-->
-              <!--column-->
-              <!--align-center-->
-              <!--justify-center-->
-              <!--#scroll-target="onScroll"-->
-
-            <!--&gt;-->
-              <!--<div v-for="job in jobs" class="single-job" >-->
-                <!--<h2>{{job.Job_Title}}<h6>{{job.Field}}</h6></h2>-->
-                <!--<br>-->
-                <!--<article>{{job.Description}}</article>-->
-                <!--<br>-->
-                <!--<article><h4>For more Info. Contact:</h4> {{job.Contact_Details}}</article>-->
-                <!--<hr>-->
-                <!--<article><h5>Posted by: {{job.Username}}</h5></article>-->
-                <!--<label class="layout right">-->
-                  <!--{{job.Date}}-->
-                <!--</label>-->
-              <!--</div>-->
-            <!--</v-layout>-->
-          <!--</v-container>-->
-        <!--</v-card>-->
-      <!--</div>-->
-      <!--<div style="">-->
-        <!--<v-flex md8 offset-md2>-->
-          <!--<v-expansion-panel absolute>-->
-            <!--<v-expansion-panel-content expand-icon="keyboard_arrow_down">-->
-              <!--<div slot="header"><h4>Your Researches</h4></div>-->
-              <!--<v-flex md6 offset-md3>-->
-                <!--<v-alert color="success" icon="check_circle" value="true" transition="scale-transition"-->
-                         <!--v-show="successCond">-->
-                  <!--{{successMessage}}-->
-                <!--</v-alert>-->
-
-                <!--<v-alert color="error" icon="warning" value="true" transition="scale-transition"-->
-                         <!--v-show="failCond">-->
-                  <!--{{successMessage}}-->
-                <!--</v-alert>-->
-                <!--<v-form v-model="valid">-->
-                  <!--<div id="view-research">-->
-                    <!--<div v-for="research in researches" class="single-research">-->
-                      <!--<h2>{{research.Name}}<h6>{{research.Field}}</h6></h2>-->
-                      <!--<br>-->
-                      <!--<article>{{research.Description}}</article>-->
-                      <!--<article>{{research.Details}}</article>-->
-                      <!--<br>-->
-                      <!--<hr>-->
-                      <!--<label class="layout right">-->
-                        <!--Published on: {{research.Publish_Date}}-->
-                      <!--</label>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</v-form>-->
-              <!--</v-flex>-->
-            <!--</v-expansion-panel-content>-->
-          <!--</v-expansion-panel>-->
-        <!--</v-flex>-->
-      <!--</div>-->
       <v-spacer></v-spacer>
 
       <v-navigation-drawer stateless hide-overlay :mini-variant.sync="mini" v-model="drawer" dark absolute>
@@ -237,11 +163,13 @@
         jobs: [],
 
         items: [
-          {title: 'Add Research', icon: 'add', link: "/AddResearch"},
+          {title: 'Add Research', icon: 'addperson', link: "/AddResearch"},
+          {title: 'Add Group Research', icon:'addpeople', link: "/CreateGroup"},
           {title: 'Edit Research', icon: 'edit'},
           {title: 'Search', icon: 'search', link: "/Search"},
           {title: 'Post Jobs', icon: 'work', link: "/PostJob"},
-          {title: 'Create Group', icon: 'group', link: "/CreateGroup"},
+          {title: 'GroupResearch', icon: 'group', link: "/GroupResearch"},
+
         ],
         mini: true,
         right: null
