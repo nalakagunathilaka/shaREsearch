@@ -21,30 +21,58 @@
         </v-toolbar>
         <v-container
           class="mt-2 scroll-y"
-          style="max-height: 500px"
+          style="max-height: 250px"
         >
 
           <div>
-            <v-list two-line>
-              <v-list-tile
-                v-for="(item,index) in messages"
-                :key="`${index}`"
-                avatar
-              >
-                <v-list-tile-avatar>
-                  <img src="/../../../static/avatar.png" alt="">
-                </v-list-tile-avatar>
-                <v-list-tile-content>
-                  <v-list-tile-sub-title>~{{ item.username }}~</v-list-tile-sub-title>
-                  <v-list-tile-title>{{ item.text }}</v-list-tile-title>
-                </v-list-tile-content>
-                <v-list-tile-action>
-                  <v-list-tile-action-text>{{getTime(item.date) + " " + new Date(item.date).toDateString() }}
-                  </v-list-tile-action-text>
-                </v-list-tile-action>
-              </v-list-tile>
-            </v-list>
+            <div
+              v-for="(item,index) in messages"
+              :key="`${index}`"
+              avatar
+              class="single-message">
+
+              <br>
+              <article style="font-style: italic"><b>~{{ item.username }}~</b></article>
+              <article>{{item.text}}</article>
+              <br>
+              <hr>
+              <label class="layout right">
+                {{getTime(item.date) + " " + new Date(item.date).toDateString()}}
+              </label>
+            </div>
           </div>
+
+          <!--<div>-->
+            <!--<v-list three-line="true">-->
+              <!--<v-list-tile-->
+                <!--v-for="(item,index) in messages"-->
+                <!--:key="`${index}`"-->
+                <!--avatar-->
+              <!--&gt;-->
+                <!--<v-list-tile-avatar>-->
+                  <!--<img src="/../../../static/avatar.png" alt="">-->
+                <!--</v-list-tile-avatar>-->
+                <!--<v-list-tile-content>-->
+                  <!--<div class="row">-->
+                    <!--<v-list-tile-sub-title>~{{ item.username }}~</v-list-tile-sub-title>-->
+                  <!--</div>-->
+                  <!--<div class="row">-->
+                    <!--<article>{{ item.text }}</article>-->
+                  <!--</div>-->
+                  <!--<div class="row">-->
+                    <!--<article><v-list-tile-action-text>{{getTime(item.date) + " " + new Date(item.date).toDateString() }}-->
+                    <!--</v-list-tile-action-text>-->
+                    <!--</article>-->
+                  <!--</div>-->
+
+                <!--</v-list-tile-content>-->
+                <!--&lt;!&ndash;<v-list-tile-action>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<v-list-tile-action-text>{{getTime(item.date) + " " + new Date(item.date).toDateString() }}&ndash;&gt;-->
+                  <!--&lt;!&ndash;</v-list-tile-action-text>&ndash;&gt;-->
+                <!--&lt;!&ndash;</v-list-tile-action>&ndash;&gt;-->
+              <!--</v-list-tile>-->
+            <!--</v-list>-->
+          <!--</div>-->
         </v-container>
         <div class="layout row">
           <v-flex md11>
@@ -185,5 +213,11 @@
 </script>
 
 <style scoped>
-
+  .single-message{
+    padding: 20px;
+    margin: 20px 0;
+    box-sizing: border-box;
+    border-radius: 15px 50px;
+    background: #8C9EFF
+  }
 </style>

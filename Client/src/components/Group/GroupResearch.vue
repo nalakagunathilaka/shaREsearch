@@ -62,7 +62,6 @@
 
     methods: {
 
-
       getResearches() {
         axios.get("http://localhost:3000/research/getGroupResearches")
           .then((response) => {
@@ -124,7 +123,7 @@
         return this.researches.filter(research => {
           for(var i in research.Members){
             if(research.Members.hasOwnProperty(i)){
-              var member = research.Members[i]
+              var member = research.Members[i];
               if(member.toLowerCase().includes(this.user.Username.toLowerCase())){
                 return (member.toLowerCase().includes(this.user.Username.toLowerCase()))
               }

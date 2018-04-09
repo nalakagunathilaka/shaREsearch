@@ -27,28 +27,39 @@ router.post('/addResearch', (req, res) => {
     })
 });
 
+// router.get('/getResearches', (req, res) => {
+//     var resRef = firebase.database.ref('researches');
+//     var user = firebase.authentication.currentUser;
+//     if (user != null) {
+//         console.log('User is signed in');
+//     } else {
+//         console.log('User is not signed in');
+//     }
+//
+//     var userRef = firebase.database.ref('users').child(user.uid);
+//     userRef.on("value", (snapshot) =>{
+//         var username = snapshot.child('Username').val();
+//         console.log(username);
+//         resRef.orderByChild("Username").equalTo(username).once("value", (snapshot) =>{
+//             console.log(snapshot.val());
+//             res.json(snapshot.val());
+//         }, (error) => {
+//             console.log(error.message);
+//         })
+//         })
+//     }, (error) => {
+//         console.log(error.message);
+// });
+
 router.get('/getResearches', (req, res) => {
     var resRef = firebase.database.ref('researches');
-    var user = firebase.authentication.currentUser;
-    if (user != null) {
-        console.log('User is signed in');
-    } else {
-        console.log('User is not signed in');
-    }
 
-    var userRef = firebase.database.ref('users').child(user.uid);
-    userRef.on("value", (snapshot) =>{
-        var username = snapshot.child('Username').val();
-        console.log(username);
-        resRef.orderByChild("Username").equalTo(username).once("value", (snapshot) =>{
-            console.log(snapshot.val());
-            res.json(snapshot.val());
-        }, (error) => {
-            console.log(error.message);
-        })
-        })
-    }, (error) => {
-        console.log(error.message);
+    resRef.once("value", (snapshot) => {
+        res.send(snapshot.val());
+        console.log(snapshot.val());
+    })
+}, (error) => {
+    console.log(error.message);
 });
 
 router.post('/submitJob', (req, res) => {

@@ -30,15 +30,18 @@
                       </v-alert>
                       <v-form v-model="valid">
                         <div id="view-research">
-                          <div v-for="research in researches" class="single-research">
-                            <h2>{{research.Name}}<h6>{{research.Field}}</h6></h2>
+                          <div
+                            v-for="(item,index) in filteredResearches"
+                            :key="`${index}`"
+                            class="single-research">
+                            <h2>{{item.Name}}<h6>{{item.Field}}</h6></h2>
                             <br>
-                            <article>{{research.Description}}</article>
-                            <article>{{research.Details}}</article>
+                            <article>{{item.Description}}</article>
+                            <article>{{item.Details}}</article>
                             <br>
                             <hr>
                             <label class="layout right">
-                              Published on: {{research.Publish_Date}}
+                              Published on: {{item.Publish_Date}}
                             </label>
                           </div>
                         </div>
@@ -180,13 +183,22 @@
         axios.get("http://localhost:3000/research/getResearches")
           .then((response) => {
             // console.log(response.data);
-            var resArray = [];
-            for (let key in response.data) {
-              response.data[key].id = key;
-              resArray.push(response.data[key]);
+            // var resArray = [];
+            // for (let key in response.data) {
+            //   response.data[key].id = key;
+            //   resArray.push(response.data[key]);
+            // }
+            // this.researches = resArray;
+            // // console.log(resArray);
+            for (var i in response.data) {
+              if (response.data.hasOwnProperty(i)) {
+                var obj = response.data[i]
+                if (obj.Category === "Single"){
+                  this.researches.push(obj);
+                }
+              }
             }
-            this.researches = resArray;
-            // console.log(resArray);
+            console.log(this.researches);
           })
           .catch((error) => {
             console.log("Error: " + error);
@@ -210,7 +222,20 @@
       },
 
     },
+
+    computed: {
+      filteredResearches() {
+        return this.researches.filter(research => {
+          var cUser = research.Username;
+          if(cUser.toLowerCase() === this.user.Username.toLowerCase()){
+            return(cUser.toLowerCase());
+          }
+        })
+      }
+    },
+
     mounted() {
+      this.user = JSON.parse(localStorage.getItem("user"));
       this.getResearches();
       this.getJobs();
     },
@@ -227,13 +252,14 @@
     padding: 20px;
     margin: 20px 0;
     box-sizing: border-box;
+    border-radius: 10px;
     background: #D1C4E9
-  ;
   }
   .single-job{
     padding: 20px;
     margin: 20px 0;
     box-sizing: border-box;
+    border-radius: 5px;
     background: #D1C4E9
   ;
   }

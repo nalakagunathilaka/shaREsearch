@@ -118,7 +118,7 @@
             <br>
             <hr>
             <br>
-            <v-layout v-for="(item,index) in members" :key="`${index}`">
+            <v-layout v-model="members" v-for="(item,index) in members" :key="`${index}`">
               <v-flex xs11 md8>
                 <p>{{item}}</p>
 
@@ -252,8 +252,9 @@
         var member = new Object();
         member.user = this.user.Username;
         this.members.push(member.user);
-        this.user = null;
-        console.log(this.members);
+        this.users.splice(this.users.indexOf(this.user),1);
+        // console.log(this.members);
+        // console.log(this.users);
       },
 
       addGroupResearch() {
