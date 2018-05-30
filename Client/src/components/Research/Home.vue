@@ -13,7 +13,43 @@
       <v-container fluid>
         <v-layout row>
           <v-flex md11>
-            <div s>
+            <div>
+              <v-flex md10 offset-md1>
+                <v-card>
+                  <v-flex md4 xs12 offset-md4>
+                    <div class="search-wrapper">
+                      <v-text-field
+                        name="search"
+                        label="Search for Members"
+                        hint="Enter Name"
+                        prepend-icon="mdi-account-search"
+                        id="testing"
+                        v-model="search"
+                      ></v-text-field>
+                    </div>
+                  </v-flex>
+                  <v-container
+                    class="mt-2 scroll-y"
+                    style="max-height: 175px"
+                  >
+                    <div
+                      id="show-users"
+                    >
+                      <div v-if="search.length > 0" v-for="user in filteredUser" class="single-user">
+                        <h2>{{user.Username}}</h2>
+                        <article> Field:   {{user.Field}}</article>
+                        <article> Type:    {{user.Type}}</article>
+                        <article> Name:    {{user.Name}}</article>
+                      </div>
+
+                    </div>
+                  </v-container>
+
+                </v-card>
+              </v-flex>
+            </div>
+            <br>
+            <div>
               <v-flex md10 offset-md1>
                 <v-expansion-panel absolute>
                   <v-expansion-panel-content expand-icon="keyboard_arrow_down">
@@ -64,7 +100,7 @@
               </v-toolbar>
               <v-card>
                 <v-container
-                  style="max-height: 550px"
+                  style="max-height: 525px"
                   class="scroll-y"
                   id="scroll-target"
                 >
@@ -164,14 +200,17 @@
         failCond: false,
         valid: false,
         jobs: [],
+        search: "",
+        username: "",
+        users: [],
 
         items: [
-          {title: 'Add Research', icon: 'addperson', link: "/AddResearch"},
-          {title: 'Add Group Research', icon:'addpeople', link: "/CreateGroup"},
-          {title: 'Edit Research', icon: 'edit'},
-          {title: 'Search', icon: 'search', link: "/Search"},
-          {title: 'Post Jobs', icon: 'work', link: "/PostJob"},
-          {title: 'GroupResearch', icon: 'group', link: "/GroupResearch"},
+          {title: 'Add Research', icon: 'mdi-account-plus', link: "/AddResearch"},
+          {title: 'Add Group Research', icon:'mdi-account-multiple-plus', link: "/CreateGroup"},
+          {title: 'Edit Research', icon: 'mdi-account-edit', link: "/EditResearch"},
+          {title: 'Search', icon: 'mdi-account-search', link: "/Search"},
+          {title: 'Post Jobs', icon: 'mdi-briefcase-upload', link: "/PostJob"},
+          {title: 'GroupResearch', icon: 'mdi-account-group', link: "/GroupResearch"},
 
         ],
         mini: true,
@@ -179,6 +218,22 @@
       }
     },
     methods: {
+
+      getUsers() {
+        axios.get("http://localhost:3000/users/getUsers")
+          .then((response) => {
+            // console.log(response.data);
+            var usersArray = [];
+            for (let key in response.data) {
+              response.data[key].id = key;
+              usersArray.push(response.data[key]);
+            }
+            this.users = usersArray;
+          })
+          .catch((error) => {
+            console.log("Error: " + error);
+          })
+      },
       getResearches() {
         axios.get("http://localhost:3000/research/getResearches")
           .then((response) => {
@@ -231,6 +286,11 @@
             return(cUser.toLowerCase());
           }
         })
+      },
+      filteredUser() {
+        return this.users.filter(user => {
+          return (user.Name.toLowerCase().match(this.search.toLowerCase()))
+        })
       }
     },
 
@@ -238,6 +298,7 @@
       this.user = JSON.parse(localStorage.getItem("user"));
       this.getResearches();
       this.getJobs();
+      this.getUsers();
     },
 
   }
@@ -264,6 +325,15 @@
   ;
   }
 
-
-
+   #show-users{
+     max-width: 800px;
+     margin:0 auto;
+   }
+  .single-user{
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background: #eee;
+  }
 </style>

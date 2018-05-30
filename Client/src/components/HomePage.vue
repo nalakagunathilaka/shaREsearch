@@ -43,7 +43,7 @@
               <v-flex xs12 md4>
                 <v-card class="elevation-0 transparent" height="320px">
                   <v-card-text class="text-xs-center">
-                    <v-icon x-large class="blue--text text--lighten-2">mdi-timetable</v-icon>
+                    <v-icon x-large class="blue--text text--lighten-2">mdi-account-multiple-outline</v-icon>
                   </v-card-text>
                   <v-card-title primary-title class="layout justify-center">
                     <div class="headline text-xs-center">Meet New Researchers</div>
@@ -56,7 +56,7 @@
               <v-flex xs12 md4>
                 <v-card class="elevation-0 transparent" height="320px">
                   <v-card-text class="text-xs-center">
-                    <v-icon x-large class="blue--text text--lighten-2">mdi-chart-timeline</v-icon>
+                    <v-icon x-large class="blue--text text--lighten-2">mdi-table-settings</v-icon>
                   </v-card-text>
                   <v-card-title primary-title class="layout justify-center">
                     <div class="headline text-xs-center">Experience the shared whiteboard Facilities</div>
@@ -70,7 +70,7 @@
               <v-flex xs12 md4>
                 <v-card class="elevation-0 transparent" height="320px">
                   <v-card-text class="text-xs-center">
-                    <v-icon x-large class="blue--text text--lighten-2">mdi-message-text-outline</v-icon>
+                    <v-icon x-large class="blue--text text--lighten-2">mdi-account-group</v-icon>
                   </v-card-text>
                   <v-card-title primary-title class="layout justify-center">
                     <div class="headline text-xs-center">Get into groups and work on Researches</div>

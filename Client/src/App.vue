@@ -34,7 +34,7 @@
         class="hidden-sm-and-up"
       ></v-toolbar-side-icon>
       <v-toolbar-title>
-        <v-icon>mdi-chart-areaspline</v-icon>
+        <v-icon>mdi-atom</v-icon>
         <router-link to="/HomePage" tag="span" style="cursor: pointer">{{title}}</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -60,10 +60,10 @@
     <main>
       <router-view></router-view>
     </main>
-    <v-footer>
+    <v-footer absolute>
       <span>{{new Date().getFullYear()}}</span>
       <v-spacer></v-spacer>
-      <span> © Nalaka Gunathilaka</span>
+       © Nalaka Gunathilaka
     </v-footer>
   </v-app>
 </template>
@@ -84,7 +84,7 @@
         let toolbarItems = [
           {title: "CreateAccount", icon: "mdi-account-plus", link: "/CreateAccount"},
           {title: "Login", icon: "mdi-login-variant", link: "/login"},
-          {title: "Profile", icon: "mdi-account-key", link: "/profile"},
+          {title: " Profile", icon: "mdi-account-key", link: "/profile"},
           {title: "RemoveUsers", icon: "mdi-account-plus", link: "/RemoveUsers"},
           {title: "Complaints", icon: "mdi-account-plus", link: "/ViewComplaints"},
           {title: "Notifications", icon: "mdi-account-plus", link: "/Notifications"},
@@ -97,38 +97,38 @@
           if (user.Type === "Admin") {
             toolbarItems = [
 
-              {title: "Complaints", icon: "mdi-account-plus", link: "/ViewComplaints"},
-              {title: "Remove Users", icon: "mdi-account-plus", link:"/RemoveUsers"},
+              {title: "Complaints", icon: "mdi-file-document", link: "/ViewComplaints"},
+              {title: "Remove Users", icon: "mdi-account-remove", link:"/RemoveUsers"},
               {title: "Create Account", icon: "mdi-account-plus", link:"/CreateAdminAccount"},
-              {icon: "notifications", link: "/Notifications"},
-              {title: user.Name.split(" ")[0], icon: "mdi-account-key", link: "/profile"},
+              {icon: "mdi-bell-ring", link: "/Notifications"},
+              {title: user.Name.split(" ")[0], icon: "mdi-account-box", link: "/profile"},
               // {title: "Login", icon: "mdi-login-variant", link: "/login"},
             ]
           }
           else if (user.Type === "Student") {
             toolbarItems = [
-              {title: "Complaints", icon: "mdi-account-plus", link: "/Complaints"},
-              {title: user.Name.split(" ")[0], icon: "mdi-account-key", link: "/profile"},
-              {icon: "notifications", link: "/ViewNotifications"},
-              {icon: "home", link: "/Home"},
+              {title: "Complaints", icon: "mdi-file-document", link: "/Complaints"},
+              {title: user.Name.split(" ")[0], icon: "mdi-account-box", link: "/profile"},
+              {icon: "mdi-bell-ring", link: "/ViewNotifications"},
+              {icon: "mdi-home-circle", link: "/Home"},
 //            {title: "Login", icon: "mdi-login-variant", link: "/login"},
             ]
           }
           else if (user.Type === "Professor") {
             toolbarItems = [
-              {title: "Complaints", icon: "mdi-account-plus", link: "/Complaints"},
-              {title: user.Name.split(" ")[0], icon: "mdi-account", link: "/profile"},
-              {icon: "notifications", link: "/ViewNotifications"},
-              {icon: "home", link: "/Home"},
+              {title: "Complaints", icon: "mdi-file-document", link: "/Complaints"},
+              {title: user.Name.split(" ")[0], icon: "mdi-account-box", link: "/profile"},
+              {icon: "mdi-bell-ring", link: "/ViewNotifications"},
+              {icon: "mdi-home-circle", link: "/Home"},
 //            {title: "Login", icon: "mdi-login-variant", link: "/login"},
             ]
           }
           else if (user.Type === "Teacher") {
             toolbarItems = [
-              {title: "Complaints", icon: "mdi-account-plus", link: "/Complaints"},
-              {title: user.Name.split(" ")[0], icon: "mdi-account", link: "/profile"},
-              {icon: "notifications", link: "/ViewNotifications"},
-              {icon: "home", link: "/Home"},
+              {title: "Complaints", icon: "mdi-file-document", link: "/Complaints"},
+              {title: user.Name.split(" ")[0], icon: "mdi-account-box", link: "/profile"},
+              {icon: "mdi-bell-ring", link: "/ViewNotifications"},
+              {icon: "mdi-home-circle", link: "/Home"},
 //            {title: "Login", icon: "mdi-login-variant", link: "/login"},
             ]
           }

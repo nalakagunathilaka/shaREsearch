@@ -53,7 +53,7 @@
       return {
         name: '',
         password: '',
-        pass1: '',
+        pass1: true,
         failCond: '',
         valid: '',
         successMessage: '',
@@ -80,7 +80,7 @@
               console.log(response.data.user);
               localStorage.setItem("user", JSON.stringify(response.data.user));
               localStorage.setItem("token", response.data.token);
-              this.$router.push('/profile');
+              this.$router.push('/Home');
               location.reload();
             }
             else {

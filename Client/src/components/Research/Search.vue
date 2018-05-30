@@ -6,7 +6,7 @@
           name="search"
           label="Search for Researches"
           hint="Enter search hint"
-          prepend-icon="search"
+          prepend-icon="mdi-account-search"
           id="testing"
           v-model="search"
         ></v-text-field>

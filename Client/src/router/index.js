@@ -17,6 +17,8 @@ import Search from '../components/Research/Search'
 import CreateGroup from '../components/Group/CreateGroup'
 import GroupResearch from '../components/Group/GroupResearch'
 import WorkSpace from '../components/Group/WorkSpace'
+import EditResearch from '../components/Research/EditResearch'
+import EditSingleResearch from '../components/Research/EditSingleResearch'
 
 
 Vue.use(Router)
@@ -109,6 +111,16 @@ export default new Router({
       path: '/WorkSpace/:id',
       name: 'WorkSpace',
       component: WorkSpace
+    },
+    {
+      path: '/EditResearch',
+      name: 'EditResearch',
+      component: EditResearch
+    },
+    {
+      path: '/EditSingleResearch/:id',
+      name: 'EditSingleResearch',
+      component: EditSingleResearch
     },
 
   ]

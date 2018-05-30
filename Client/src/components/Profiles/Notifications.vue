@@ -61,7 +61,7 @@
                 this.successCond = true;
                 this.failCond = false;
                 setTimeout(() => {
-                  this.$router.push('/HomePage');
+                  // this.$router.push('/HomePage');
                 }, 2000);
 
               }

@@ -72,3 +72,12 @@ fireConnection.on("value", (con) => {
 // app.listen(port, () => {
 //     console.log(`Server running on port ${port}.`);
 // });
+
+function onConnection(socket){
+    socket.on('drawing', (data) => {
+        console.log(data);
+        socket.broadcast.emit('drawing', data)
+    });
+}
+
+io.on('connection whiteboard', onConnection);

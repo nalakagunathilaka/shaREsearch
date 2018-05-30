@@ -141,6 +141,36 @@ router.post('/getCurrentResearch', (req, res, next) => {
     })
 });
 
+router.post('/updateResearch', (req, res, next) => {
+    var resRef = firebase.database.ref('researches');
+    var key = req.body.key;
+
+    resRef.child(key).update({
+        Name: req.body.name,
+        Username: req.body.username,
+        Description: req.body.description,
+        Publish_Date: req.body.publishdate,
+        Field: req.body.field,
+        Researcher: req.body.Researcher,
+        Details: req.body.details
+
+    }).then((result) => {
+        res.send({success: true, message: 'Project updated successfully'});
+    }).catch((err) => {
+        console.log(err);
+        res.send({success: true, message: err.message});
+    })
+});
+
+router.post('/getCurrentResearch', (req, res, next) => {
+    var resRef = firebase.database.ref('researches');
+    resRef.orderByChild('Name').equalTo(req.body.name).once("value", (snapshot) => {
+        var key = Object.keys(snapshot.val())[0];
+        res.json({successs: true, research: snapshot.val(), key: key});
+    })
+});
+
+
 
 
 module.exports = router;

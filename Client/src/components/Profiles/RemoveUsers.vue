@@ -6,7 +6,7 @@
           name="search"
           label="Search for Users"
           hint="Enter the Username"
-          prepend-icon="search"
+          prepend-icon="mdi-account-search"
           id="testing"
           v-model="search"
         ></v-text-field>
@@ -26,7 +26,6 @@
       </div>
 
     </v-flex>
-    <!--nalaka gg-->
     <div id="show-users">
       <v-card-title primary-title class="layout justify-center">
         <div class="headline text-xs-center"><b>All Users</b></div>
@@ -122,6 +121,7 @@
     padding: 20px;
     margin: 20px 0;
     box-sizing: border-box;
+    border-radius: 5px;
     background: #eee;
   }
 </style>
